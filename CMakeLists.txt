@@ -3,11 +3,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(GEODE_DISABLE_PRECOMPILED_HEADERS ON)
 
-project(DeveloperBadges VERSION 1.0.3)
+project(DeveloperBadges VERSION 1.1.0)
 
 add_library(${PROJECT_NAME} SHARED
-    src/main.cpp
+    src/hooks/CommentCell.cpp
+    src/hooks/ProfilePage.cpp
+    src/DeveloperBadges.cpp
 )
 
 if (NOT DEFINED ENV{GEODE_SDK})

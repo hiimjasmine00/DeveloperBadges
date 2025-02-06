@@ -1,4 +1,8 @@
 # Developer Badges Changelog
+## v1.1.0 (2025-02-06)
+- Changed badge loading to load one badge at a time
+- Added badge reloading to profiles
+
 ## v1.0.3 (2024-11-15)
 - Ported to Geode v4.0.0-beta.1
 

@@ -7,7 +7,7 @@ A mod that gives badges to Geode mod developers.
 
 ## Credits
 - [Brift](user:14114548) - Designer of the mod's textures
-- [hiimjustin000](user:7466002) - Creator of the mod
+- [hiimjasmine00](user:7466002) - Creator of the mod
 
 ## Badges
 - Mod Developer
