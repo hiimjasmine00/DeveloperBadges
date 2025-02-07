@@ -1,5 +1,5 @@
 # Developer Badges Changelog
-## v1.1.0 (2025-02-06)
+## v1.1.0 (2025-02-07)
 - Changed badge loading to load one badge at a time
 - Added badge reloading to profiles
 
