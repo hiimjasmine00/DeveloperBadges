@@ -1,7 +1,6 @@
 #include "../DeveloperBadges.hpp"
 #include <Geode/binding/GJUserScore.hpp>
 #include <Geode/modify/ProfilePage.hpp>
-#include <Geode/utils/web.hpp>
 #include <Geode/utils/ranges.hpp>
 
 using namespace geode::prelude;

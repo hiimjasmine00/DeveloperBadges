@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.2 (2025-02-09)
+- I don't want to talk about it
+
 ## v1.1.1 (2025-02-09)
 - Switched back to global loading at startup, to make it more GDPS owner-friendly
 - Fixed a bug where clicking on a badge would crash the game with Badges API enabled

@@ -5,7 +5,6 @@
 #include <Geode/binding/GJUserScore.hpp>
 #include <Geode/binding/TextArea.hpp>
 #include <Geode/modify/CommentCell.hpp>
-#include <Geode/utils/web.hpp>
 
 using namespace geode::prelude;
 
