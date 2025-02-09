@@ -1,4 +1,4 @@
-#include <Geode/utils/web.hpp>
+#include <ccTypes.h>
 
 enum class BadgeType {
     None,
@@ -21,6 +21,5 @@ public:
 
     static DeveloperBadge badgeForUser(int);
     static cocos2d::ccColor3B getCommentColor(BadgeType);
-    static void loadBadge(geode::EventListener<geode::utils::web::WebTask>&&, int, std::function<void(const DeveloperBadge&)>);
     static void showBadgeInfo(std::string, BadgeType);
 };

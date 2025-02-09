@@ -24,32 +24,6 @@ ccColor3B DeveloperBadges::getCommentColor(BadgeType badge) {
     }
 }
 
-void DeveloperBadges::loadBadge(EventListener<web::WebTask>&& listenerRef, int id, std::function<void(const DeveloperBadge&)> callback) {
-    if (LOADED_IDS.contains(id)) return;
-
-    auto&& listener = std::move(listenerRef);
-    listener.bind([id, callback](web::WebTask::Event* e) {
-        if (auto res = e->getValue()) {
-            LOADED_IDS.insert(id);
-
-            if (!res->ok() || !res->json().isOk()) return;
-
-            auto badge = res->json().unwrapOr(matjson::Value());
-            if (!badge.isObject()) return;
-
-            DeveloperBadge devBadge = {
-                .id = id,
-                .name = badge["name"].asString().unwrapOr(""),
-                .badge = (BadgeType)badge["badge"].asInt().unwrapOr(0)
-            };
-            DEVELOPER_BADGES.push_back(devBadge);
-            callback(devBadge);
-        }
-    });
-
-    listener.setFilter(web::WebRequest().get(fmt::format(BADGE_URL, id)));
-}
-
 void DeveloperBadges::showBadgeInfo(std::string username, BadgeType type) {
     auto badgeName = "";
     auto badgeDesc = "";

@@ -10,20 +10,12 @@
 using namespace geode::prelude;
 
 class $modify(DBCommentCell, CommentCell) {
-    struct Fields {
-        EventListener<web::WebTask> m_listener;
-    };
-
     void loadFromComment(GJComment* comment) {
         CommentCell::loadFromComment(comment);
 
         auto badge = DeveloperBadges::badgeForUser(comment->m_accountID);
-        if (badge.id != 0) return createBadge(badge);
+        if (badge.id == 0) return;
 
-        DeveloperBadges::loadBadge(std::move(m_fields->m_listener), comment->m_accountID, [this](const DeveloperBadge& badge) { createBadge(badge); });
-    }
-
-    void createBadge(const DeveloperBadge& badge) {
         auto usernameMenu = m_mainLayer->getChildByIDRecursive("username-menu");
         if (!usernameMenu) return;
 

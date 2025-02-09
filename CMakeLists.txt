@@ -9,9 +9,12 @@ project(DeveloperBadges VERSION 1.1.1)
 
 add_library(${PROJECT_NAME} SHARED
     src/hooks/CommentCell.cpp
+    src/hooks/MenuLayer.cpp
     src/hooks/ProfilePage.cpp
     src/DeveloperBadges.cpp
 )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE BADGES_URL="https://raw.githubusercontent.com/hiimjasmine00/developer-badges/master/badges.json")
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
