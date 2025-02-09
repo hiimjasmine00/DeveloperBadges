@@ -60,7 +60,7 @@ class $modify(DBProfilePage, ProfilePage) {
     }
 
     void onBadge(CCObject* sender) {
-        DeveloperBadges::showBadgeInfo(static_cast<CCString*>(
-            static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr))->getCString(), (BadgeType)sender->getTag());
+        auto badgeName = static_cast<CCString*>(static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr));
+        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->getCString() : m_score->m_userName, (BadgeType)sender->getTag());
     }
 };

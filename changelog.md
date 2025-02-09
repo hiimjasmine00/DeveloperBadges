@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.1 (2025-02-09)
+- Fixed a bug where clicking on a badge would crash the game with Badges API enabled
+
 ## v1.1.0 (2025-02-07)
 - Changed badge loading to load one badge at a time
 - Added badge reloading to profiles

@@ -2,7 +2,7 @@
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/GJComment.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
-#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/GJUserScore.hpp>
 #include <Geode/binding/TextArea.hpp>
 #include <Geode/modify/CommentCell.hpp>
 #include <Geode/utils/web.hpp>
@@ -61,7 +61,7 @@ class $modify(DBCommentCell, CommentCell) {
     }
 
     void onBadge(CCObject* sender) {
-        DeveloperBadges::showBadgeInfo(static_cast<CCString*>(
-            static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr))->getCString(), (BadgeType)sender->getTag());
+        auto badgeName = static_cast<CCString*>(static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr));
+        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->getCString() : m_comment->m_userScore->m_userName, (BadgeType)sender->getTag());
     }
 };
