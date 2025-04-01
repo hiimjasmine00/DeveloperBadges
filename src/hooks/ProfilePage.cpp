@@ -1,7 +1,6 @@
 #include "../DeveloperBadges.hpp"
 #include <Geode/binding/GJUserScore.hpp>
 #include <Geode/modify/ProfilePage.hpp>
-#include <Geode/utils/ranges.hpp>
 
 using namespace geode::prelude;
 
@@ -37,6 +36,6 @@ class $modify(DBProfilePage, ProfilePage) {
 
     void onBadge(CCObject* sender) {
         auto badgeName = static_cast<CCString*>(static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr));
-        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->getCString() : m_score->m_userName, (BadgeType)sender->getTag());
+        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->m_sString : m_score->m_userName, (BadgeType)sender->getTag());
     }
 };

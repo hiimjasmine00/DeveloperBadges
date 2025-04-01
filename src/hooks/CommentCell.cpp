@@ -27,12 +27,15 @@ class $modify(DBCommentCell, CommentCell) {
         usernameMenu->addChild(badgeButton);
         usernameMenu->updateLayout();
 
-        auto savedLevel = GameLevelManager::get()->getSavedLevel(m_comment->m_levelID);
-        if (m_accountComment || m_comment->m_modBadge > 0 || (savedLevel && savedLevel->m_userID == m_comment->m_userID)) return;
-        if (badge.badge == BadgeType::ModDeveloper && !Mod::get()->getSettingValue<bool>("mod-developer-color-toggle")) return;
-        if (badge.badge == BadgeType::VerifiedDeveloper && !Mod::get()->getSettingValue<bool>("verified-developer-color-toggle")) return;
-        if (badge.badge == BadgeType::IndexStaff && !Mod::get()->getSettingValue<bool>("index-staff-color-toggle")) return;
-        if (badge.badge == BadgeType::LeadDeveloper && !Mod::get()->getSettingValue<bool>("lead-developer-color-toggle")) return;
+        if (m_accountComment || comment->m_modBadge > 0) return;
+        if (auto savedLevel = GameLevelManager::get()->getSavedLevel(comment->m_levelID);
+            savedLevel && savedLevel->m_userID == comment->m_userID) return;
+
+        auto mod = Mod::get();
+        if (badge.badge == BadgeType::ModDeveloper && !mod->getSettingValue<bool>("mod-developer-color-toggle")) return;
+        if (badge.badge == BadgeType::VerifiedDeveloper && !mod->getSettingValue<bool>("verified-developer-color-toggle")) return;
+        if (badge.badge == BadgeType::IndexStaff && !mod->getSettingValue<bool>("index-staff-color-toggle")) return;
+        if (badge.badge == BadgeType::LeadDeveloper && !mod->getSettingValue<bool>("lead-developer-color-toggle")) return;
 
         if (auto commentTextLabel = static_cast<CCLabelBMFont*>(m_mainLayer->getChildByID("comment-text-label")))
             commentTextLabel->setColor(DeveloperBadges::getCommentColor(badge.badge));
@@ -53,6 +56,6 @@ class $modify(DBCommentCell, CommentCell) {
 
     void onBadge(CCObject* sender) {
         auto badgeName = static_cast<CCString*>(static_cast<CCNode*>(sender)->getUserObject("badge-name"_spr));
-        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->getCString() : m_comment->m_userScore->m_userName, (BadgeType)sender->getTag());
+        DeveloperBadges::showBadgeInfo(badgeName ? badgeName->m_sString : m_comment->m_userScore->m_userName, (BadgeType)sender->getTag());
     }
 };

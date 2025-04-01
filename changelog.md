@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.3 (2025-04-01)
+- Internal code changes (April Fools' Day)
+
 ## v1.1.2 (2025-02-09)
 - I don't want to talk about it
 
