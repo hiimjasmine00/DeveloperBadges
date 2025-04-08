@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.4 (2025-04-08)
+- Added support for iOS
+
 ## v1.1.3 (2025-04-01)
 - Internal code changes (April Fools' Day)
 
