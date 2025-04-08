@@ -3,7 +3,8 @@
     "gd": {
         "android": "2.2074",
         "win": "2.2074",
-        "mac": "2.2074"
+        "mac": "2.2074",
+        "ios": "2.2074"
     },
     "version": "v1.1.3",
     "id": "hiimjustin000.developer_badges",
