@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.5 (2025-06-02)
+- Switched to a new API for getting the badges
+
 ## v1.1.4 (2025-04-08)
 - Added support for iOS
 
