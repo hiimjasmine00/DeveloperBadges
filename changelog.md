@@ -1,6 +1,6 @@
 # Developer Badges Changelog
 ## v1.1.7 (2025-06-23)
-- Fixed info button misalignment
+- Fixed a bug where the info button in the profile page would not be aligned correctly ([#2](https://github.com/hiimjasmine00/DeveloperBadges/pull/2))
 
 ## v1.1.6 (2025-06-23)
 - Ported to Geode v4.6.1
