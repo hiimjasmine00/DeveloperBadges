@@ -1,5 +1,6 @@
 # Developer Badges
-A mod that gives badges to Geode mod developers.
+Badges for every* Geode mod developer.\
+\* Every one I could find, at least.
 
 ## Features
 - Clickable badges displayed on a user's profile and comments

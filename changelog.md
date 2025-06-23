@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.6 (2025-06-23)
+- Ported to Geode v4.6.1
+
 ## v1.1.5 (2025-06-02)
 - Switched to a new API for getting the badges
 
