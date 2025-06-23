@@ -21,8 +21,8 @@ class $modify(DBProfilePage, ProfilePage) {
         auto usernameMenu = m_mainLayer->getChildByID("username-menu");
         if (!usernameMenu) return;
 
-		auto infoButton = m_mainLayer->getChildByID("main-menu")->getChildByID("info-button");
-		if (!infoButton) return;
+        auto infoButton = m_mainLayer->getChildByID("main-menu")->getChildByID("info-button");
+        if (!infoButton) return;
 
         auto badgeButton = CCMenuItemSpriteExtra::create(
             CCSprite::createWithSpriteFrameName(fmt::format("badge{:02}.png"_spr, (int)badge.badge).c_str()),
@@ -34,7 +34,7 @@ class $modify(DBProfilePage, ProfilePage) {
         usernameMenu->addChild(badgeButton);
         usernameMenu->updateLayout();
 
-		infoButton->setPositionX(infoButton->getPositionX() + badgeButton->getContentWidth() * 0.5f);
+        infoButton->setPositionX(infoButton->getPositionX() + badgeButton->getContentWidth() * 0.5f);
 
         f->m_hasBadge = true;
     }
