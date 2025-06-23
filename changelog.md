@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.7 (2025-06-23)
+- Fixed info button misalignment
+
 ## v1.1.6 (2025-06-23)
 - Ported to Geode v4.6.1
 
