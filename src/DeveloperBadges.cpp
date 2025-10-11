@@ -2,57 +2,74 @@
 #include <Geode/binding/FLAlertLayer.hpp>
 #include <Geode/loader/GameEvent.hpp>
 #include <Geode/loader/Mod.hpp>
-#include <Geode/utils/ranges.hpp>
 #include <Geode/utils/web.hpp>
+#include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
 
 using namespace geode::prelude;
+using namespace optional_settings;
 
-#define BADGES_URL "https://badges.hiimjasmine00.com/developer"
+constexpr std::array settings = {
+    std::make_pair("mod-developer-color", "mod-developer-color-toggle"),
+    std::make_pair("verified-developer-color", "verified-developer-color-toggle"),
+    std::make_pair("index-staff-color", "index-staff-color-toggle"),
+    std::make_pair("lead-developer-color", "lead-developer-color-toggle")
+};
 
-$execute {
+$on_mod(Loaded) {
+    auto mod = Mod::get();
+    auto& data = mod->getSavedSettingsData();
+    if (!mod->setSavedValue("migrated-colors", true)) {
+        for (auto [key, toggle] : settings) {
+            Result<ccColor3B> oldColorValue = data.get(key).andThen([](const matjson::Value& v) {
+                return v.as<ccColor3B>();
+            });
+            Result<bool> oldColorEnabled = data.get(toggle).andThen([](const matjson::Value& v) {
+                return v.asBool();
+            });
+            if (oldColorValue.isOk() && oldColorEnabled.isOk()) {
+                auto setting = std::static_pointer_cast<OptionalColor3BSetting>(mod->getSetting(key));
+                setting->setStoredValue(oldColorValue.unwrap());
+                setting->setEnabled(oldColorEnabled.unwrap());
+            }
+        }
+    }
+
     new EventListener(+[](GameEvent*) {
-        web::WebRequest().get(BADGES_URL).listen([](web::WebResponse* res) {
-            if (!res->ok() || !res->json().isOk()) return *res;
+        web::WebRequest().get("https://badges.hiimjasmine00.com/developer").listen([](web::WebResponse* res) {
+            if (!res->ok()) return;
 
-            auto badges = res->json().unwrapOr(matjson::Value::array());
-            if (!badges.isArray()) return *res;
+            Result<std::vector<matjson::Value>> json = res->json().andThen([](matjson::Value&& v) {
+                return std::move(v).asArray();
+            });
+            if (!json.isOk()) return;
 
-            DeveloperBadges::developerBadges = ranges::reduce<std::vector<DeveloperBadge>>(
-                badges.asArray().unwrap(),
-                [](std::vector<DeveloperBadge>& vec, const matjson::Value& value) {
-                    if (!value.contains("id") || !value["id"].isNumber() || !value.contains("name") ||
-                        !value["name"].isString() | !value.contains("badge") || !value["badge"].isNumber()) return;
+            for (auto& value : json.unwrap()) {
+                Result<int> id = value.get("id").andThen([](const matjson::Value& v) {
+                    return v.as<int>();
+                });
+                if (!id.isOkAnd([](int id) { return id > 0; })) continue;
 
-                    vec.push_back({
-                        .id = value["id"].as<int>().unwrap(),
-                        .badge = (BadgeType)value["badge"].as<int>().unwrap(),
-                        .name = value["name"].asString().unwrap()
-                    });
-                }
-            );
+                Result<int> type = value.get("badge").andThen([](const matjson::Value& v) {
+                    return v.as<int>();
+                });
+                if (!type.isOkAnd([](int type) { return type > 0 && type < 5; })) continue;
 
-            return *res;
+                Result<std::string> name = value.get("name").andThen([](const matjson::Value& v) {
+                    return v.asString();
+                });
+                if (!name.isOk()) continue;
+
+                DeveloperBadges::developerBadges.emplace_back(id.unwrap(), type.unwrap(), name.unwrap());
+            }
         });
     }, GameEventFilter(GameEventType::Loaded));
 }
 
-DeveloperBadge& DeveloperBadges::badgeForUser(int id) {
-    static DeveloperBadge empty = { 0, BadgeType::None, "" };
+DeveloperBadge* DeveloperBadges::badgeForUser(int id) {
     auto badge = std::ranges::find_if(developerBadges, [id](const DeveloperBadge& badge) {
-        return badge.id == id && badge.badge != BadgeType::None;
+        return badge.id == id;
     });
-    return badge != developerBadges.end() ? *badge : empty;
-}
-
-ccColor3B DeveloperBadges::getCommentColor(BadgeType badge) {
-    auto mod = Mod::get();
-    switch (badge) {
-        case BadgeType::ModDeveloper: return mod->getSettingValue<ccColor3B>("mod-developer-color");
-        case BadgeType::VerifiedDeveloper: return mod->getSettingValue<ccColor3B>("verified-developer-color");
-        case BadgeType::IndexStaff: return mod->getSettingValue<ccColor3B>("index-staff-color");
-        case BadgeType::LeadDeveloper: return mod->getSettingValue<ccColor3B>("lead-developer-color");
-        default: return ccColor3B { 255, 255, 255 };
-    }
+    return badge != developerBadges.end() ? std::to_address(badge) : nullptr;
 }
 
 constexpr std::array names = {
@@ -77,11 +94,10 @@ constexpr std::array descriptions = {
     "They are part of the main development team and have significant contributions to the <cy>Geode ecosystem</c>"
 };
 
-void DeveloperBadges::showBadgeInfo(const std::string& username, BadgeType type) {
-    auto badgeType = (int)type;
+void DeveloperBadges::showBadgeInfo(const std::string& username, int type) {
     FLAlertLayer::create(
-        badgeType < names.size() ? names[badgeType] : names[0],
-        fmt::format("<cg>{}</c> {}.", username, badgeType < descriptions.size() ? descriptions[badgeType] : descriptions[0]),
+        names[type < names.size() ? type : 0],
+        fmt::format("<cg>{}</c> {}.", username, descriptions[type < descriptions.size() ? type : 0]),
         "OK"
     )->show();
 }

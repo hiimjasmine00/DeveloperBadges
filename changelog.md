@@ -1,4 +1,8 @@
 # Developer Badges Changelog
+## v1.1.7 (2025-10-11)
+- Added compatibility with the mod "Comment Emojis Reloaded" by Prevter
+- Changed comment color settings to use my "Optional Settings" mod
+
 ## v1.1.6 (2025-06-23)
 - Ported to Geode v4.6.1
 
