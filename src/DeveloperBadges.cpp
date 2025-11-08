@@ -2,8 +2,9 @@
 #include <Geode/binding/FLAlertLayer.hpp>
 #include <Geode/loader/GameEvent.hpp>
 #include <Geode/loader/Mod.hpp>
-#include <Geode/utils/web.hpp>
 #include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
+#include <jasmine/setting.hpp>
+#include <jasmine/web.hpp>
 
 using namespace geode::prelude;
 using namespace optional_settings;
@@ -22,12 +23,13 @@ $on_mod(Loaded) {
     auto& data = mod->getSavedSettingsData();
     if (!mod->setSavedValue("migrated-colors", true)) {
         for (auto [key, toggle] : settings) {
-            auto oldColorValue = data.get<ccColor3B>(key);
-            auto oldColorEnabled = data.get<bool>(toggle);
-            if (oldColorValue.isOk() && oldColorEnabled.isOk()) {
-                auto setting = std::static_pointer_cast<OptionalColor3BSetting>(mod->getSetting(key));
-                setting->setStoredValue(oldColorValue.unwrap());
-                setting->setEnabled(oldColorEnabled.unwrap());
+            if (auto setting = jasmine::setting::get<std::optional<ccColor3B>>(key)) {
+                auto oldColorValue = data.get<ccColor3B>(key);
+                auto oldColorEnabled = data.get<bool>(toggle);
+                if (oldColorValue.isOk() && oldColorEnabled.isOk()) {
+                    setting->setStoredValue(oldColorValue.unwrap());
+                    setting->setEnabled(oldColorEnabled.unwrap());
+                }
             }
         }
     }
@@ -36,12 +38,7 @@ $on_mod(Loaded) {
         web::WebRequest().get("https://badges.hiimjasmine00.com/developer").listen([](web::WebResponse* res) {
             if (!res->ok()) return;
 
-            Result<std::vector<matjson::Value>> json = res->json().andThen([](matjson::Value&& v) {
-                return std::move(v).asArray();
-            });
-            if (!json.isOk()) return;
-
-            for (auto& value : json.unwrap()) {
+            for (auto& value : jasmine::web::getArray(res)) {
                 auto id = value.get<int>("id");
                 if (!id.isOkAnd([](int id) { return id > 0; })) continue;
 

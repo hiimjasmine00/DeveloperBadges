@@ -5,6 +5,7 @@
 #include <Geode/binding/TextArea.hpp>
 #include <Geode/modify/CommentCell.hpp>
 #include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
+#include <jasmine/setting.hpp>
 
 using namespace geode::prelude;
 
@@ -52,8 +53,8 @@ class $modify(DBCommentCell, CommentCell) {
 
         if (badgeType < 1 || badgeType > colors.size()) return;
 
-        if (auto commentColor = Mod::get()->getSettingValue<std::optional<cocos2d::ccColor3B>>(colors[badgeType - 1])) {
-            auto color = *commentColor;
+        if (auto commentColor = jasmine::setting::getValue<std::optional<cocos2d::ccColor3B>>(colors[badgeType - 1])) {
+            auto color = commentColor.value();
 
             if (auto commentTextLabel = static_cast<CCLabelBMFont*>(m_mainLayer->getChildByID("comment-text-label"))) {
                 commentTextLabel->setColor(color);
