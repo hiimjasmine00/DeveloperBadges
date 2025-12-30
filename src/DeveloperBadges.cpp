@@ -3,6 +3,7 @@
 #include <Geode/loader/GameEvent.hpp>
 #include <Geode/loader/Mod.hpp>
 #include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
+#include <alphalaneous.badges_api_reimagined/include/BadgesAPI.hpp>
 #include <jasmine/setting.hpp>
 #include <jasmine/web.hpp>
 
@@ -53,6 +54,80 @@ $on_mod(Loaded) {
             }
         });
     }, GameEventFilter(GameEventType::Loaded));
+
+    BadgesAPI::registerBadge(
+        "mod-developer"_spr,
+        "Mod Developer",
+        "<cg>PERSON</c> is a <ca>mod developer</c> for <cy>Geode</c>.\n\n"
+        "They have created mods that are available on the <cy>Geode mod index</c>.\n\n"
+        "They will have to have new mods and mod updates approved by the <cd>index staff</c>.",
+        [] {
+            return CCSprite::createWithSpriteFrameName("badge01.png"_spr);
+        },
+        [] (const Badge& badge, const UserInfo& info) {
+            auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            if (!devBadge || devBadge.type != 1) return;
+
+            BadgesAPI::setDescription("mod-developer"_spr, geode::utils::string::replace(BadgesAPI::getDescription("mod-developer"_spr), "PERSON", info.userName));
+
+            BadgesAPI::showBadge(badge);
+        }
+    );
+
+    BadgesAPI::registerBadge(
+        "verified-developer"_spr,
+        "Verified Developer",
+        "<cg>PERSON</c> is a <cp>verified mod developer</c> for <cy>Geode</c>.\n\n"
+        "They can update their mods on the <cy>Geode mod index</c> without the need for approval.\n\n"
+        "They will still have to have new mods approved by the <cd>index staff</c>.",
+        [] {
+            return CCSprite::createWithSpriteFrameName("badge02.png"_spr);
+        },
+        [] (const Badge& badge, const UserInfo& info) {
+            auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            if (!devBadge || devBadge.type != 2) return;
+
+            BadgesAPI::setDescription("verified-developer"_spr, geode::utils::string::replace(BadgesAPI::getDescription("verified-developer"_spr), "PERSON", info.userName));
+
+            BadgesAPI::showBadge(badge);
+        }
+    );
+
+    BadgesAPI::registerBadge(
+        "index-staff"_spr,
+        "Index Staff",
+        "<cg>PERSON</c> is a member of the <cd>index staff</c> for <cy>Geode</c>.\n\n"
+        "They can approve or reject mods uploaded to the <cy>Geode mod index</c>.",
+        [] {
+            return CCSprite::createWithSpriteFrameName("badge03.png"_spr);
+        },
+        [] (const Badge& badge, const UserInfo& info) {
+            auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            if (!devBadge || devBadge.type != 3) return;
+
+            BadgesAPI::setDescription("index-staff"_spr, geode::utils::string::replace(BadgesAPI::getDescription("index-staff"_spr), "PERSON", info.userName));
+
+            BadgesAPI::showBadge(badge);
+        }
+    );
+
+    BadgesAPI::registerBadge(
+        "lead-developer"_spr,
+        "Lead Developer",
+        "<cg>PERSON</c> is a <co>lead developer</c> of <cy>Geode</c>.\n\n"
+        "They are part of the main development team and have significant contributions to the <cy>Geode ecosystem</c>.",
+        [] {
+            return CCSprite::createWithSpriteFrameName("badge04.png"_spr);
+        },
+        [] (const Badge& badge, const UserInfo& info) {
+            auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            if (!devBadge || devBadge.type != 4) return;
+
+            BadgesAPI::setDescription("lead-developer"_spr, geode::utils::string::replace(BadgesAPI::getDescription("lead-developer"_spr), "PERSON", info.userName));
+
+            BadgesAPI::showBadge(badge);
+        }
+    );
 }
 
 DeveloperBadge* DeveloperBadges::badgeForUser(int id) {
@@ -60,6 +135,7 @@ DeveloperBadge* DeveloperBadges::badgeForUser(int id) {
     return badge != developerBadges.end() ? &badge->second : nullptr;
 }
 
+/*
 constexpr std::array names = {
     "No Badge",
     "Mod Developer",
@@ -89,3 +165,4 @@ void DeveloperBadges::showBadgeInfo(const std::string& username, int type) {
         "OK"
     )->show();
 }
+*/

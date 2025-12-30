@@ -1,7 +1,11 @@
 #include "../DeveloperBadges.hpp"
+/*
 #include <Geode/binding/GameLevelManager.hpp>
+*/
 #include <Geode/binding/GJComment.hpp>
+/*
 #include <Geode/binding/GJGameLevel.hpp>
+*/
 #include <Geode/binding/TextArea.hpp>
 #include <Geode/modify/CommentCell.hpp>
 #include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
@@ -10,9 +14,11 @@
 using namespace geode::prelude;
 
 class $modify(DBCommentCell, CommentCell) {
+    /*
     struct Fields {
         std::string m_badgeName;
     };
+    */
 
     static void onModify(ModifyBase<ModifyDerive<DBCommentCell, CommentCell>>& self) {
         (void)self.setHookPriorityBeforePost("CommentCell::loadFromComment", "thesillydoggo.comment_emojis");
@@ -25,12 +31,15 @@ class $modify(DBCommentCell, CommentCell) {
         auto badge = DeveloperBadges::badgeForUser(comment->m_accountID);
         if (!badge) return;
 
+        /*
         auto usernameMenu = m_mainLayer->getChildByIDRecursive("username-menu");
         if (!usernameMenu) return;
 
         m_fields->m_badgeName = badge->name;
+        */
 
         auto badgeType = badge->type;
+        /*
         auto badgeSprite = CCSprite::createWithSpriteFrameName(fmt::format("badge{:02}.png"_spr, badgeType).c_str());
         badgeSprite->setScale(0.7f);
         auto badgeButton = CCMenuItemSpriteExtra::create(badgeSprite, this, menu_selector(DBCommentCell::onBadge));
@@ -43,6 +52,7 @@ class $modify(DBCommentCell, CommentCell) {
         if (auto savedLevel = GameLevelManager::get()->getSavedLevel(comment->m_levelID)) {
             if (savedLevel->m_userID == comment->m_userID) return;
         }
+        */
 
         constexpr std::array colors = {
             "mod-developer-color",
@@ -67,7 +77,9 @@ class $modify(DBCommentCell, CommentCell) {
         }
     }
 
+    /*
     void onBadge(CCObject* sender) {
         DeveloperBadges::showBadgeInfo(m_fields->m_badgeName, sender->getTag());
     }
+    */
 };

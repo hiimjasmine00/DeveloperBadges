@@ -1,5 +1,5 @@
 {
-    "geode": "4.9.0",
+    "geode": "4.10.0",
     "gd": {
         "android": "2.2074",
         "win": "2.2074",
@@ -14,7 +14,7 @@
     "dependencies": {
         "geode.node-ids": ">=v1.12.0",
         "hiimjasmine00.optional_settings": ">=v1.0.0",
-        "jouca.badgesapi": {
+        "alphalaneous.badges_api_reimagined": {
             "importance": "recommended",
             "version": ">=v1.1.0"
         }
