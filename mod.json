@@ -16,7 +16,7 @@
         "hiimjasmine00.optional_settings": ">=v1.0.0",
         "alphalaneous.badges_api_reimagined": {
             "importance": "recommended",
-            "version": ">=v1.1.0"
+            "version": ">=v1.0.5"
         }
     },
     "resources": {
