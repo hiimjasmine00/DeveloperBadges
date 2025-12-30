@@ -62,12 +62,10 @@ $on_mod(Loaded) {
         "They have created mods that are available on the <cy>Geode mod index</c>.\n\n"
         "They will have to have new mods and mod updates approved by the <cd>index staff</c>.",
         [] {
-            log::info("registering badge01.png");
             return CCSprite::createWithSpriteFrameName("badge01.png"_spr);
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
-            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 1) return;
 
             BadgesAPI::setDescription("mod-developer"_spr,
@@ -90,12 +88,10 @@ $on_mod(Loaded) {
         "They can update their mods on the <cy>Geode mod index</c> without the need for approval.\n\n"
         "They will still have to have new mods approved by the <cd>index staff</c>.",
         [] {
-            log::info("registering badge02.png");
             return CCSprite::createWithSpriteFrameName("badge02.png"_spr);
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
-            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 2) return;
 
             BadgesAPI::setDescription("verified-developer"_spr,
@@ -117,12 +113,10 @@ $on_mod(Loaded) {
         "<cg>PERSON</c> is a member of the <cd>index staff</c> for <cy>Geode</c>.\n\n"
         "They can approve or reject mods uploaded to the <cy>Geode mod index</c>.",
         [] {
-            log::info("registering badge03.png");
             return CCSprite::createWithSpriteFrameName("badge03.png"_spr);
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
-            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 3) return;
 
             BadgesAPI::setDescription("index-staff"_spr,
@@ -143,12 +137,10 @@ $on_mod(Loaded) {
         "<cg>PERSON</c> is a <co>lead developer</c> of <cy>Geode</c>.\n\n"
         "They are part of the main development team and have significant contributions to the <cy>Geode ecosystem</c>.",
         [] {
-            log::info("registering badge04.png");
             return CCSprite::createWithSpriteFrameName("badge04.png"_spr);
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
-            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 4) return;
 
             BadgesAPI::setDescription("lead-developer"_spr,
