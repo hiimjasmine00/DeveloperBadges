@@ -66,6 +66,7 @@ $on_mod(Loaded) {
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 1) return;
 
             BadgesAPI::setDescription("mod-developer"_spr,
@@ -92,6 +93,7 @@ $on_mod(Loaded) {
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 2) return;
 
             BadgesAPI::setDescription("verified-developer"_spr,
@@ -117,6 +119,7 @@ $on_mod(Loaded) {
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 3) return;
 
             BadgesAPI::setDescription("index-staff"_spr,
@@ -141,6 +144,7 @@ $on_mod(Loaded) {
         },
         [] (const Badge& badge, const UserInfo& info) {
             auto devBadge = DeveloperBadges::badgeForUser(info.accountID);
+            log::info("dj play a christmas song: {}", devBadge->type);
             if (!devBadge || devBadge->type != 4) return;
 
             BadgesAPI::setDescription("lead-developer"_spr,
