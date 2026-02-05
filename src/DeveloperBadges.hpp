@@ -6,10 +6,9 @@ struct DeveloperBadge {
     std::string name;
 };
 
-class DeveloperBadges {
-public:
-    static std::map<int, DeveloperBadge> developerBadges;
+namespace DeveloperBadges {
+    extern std::map<int, DeveloperBadge> developerBadges;
 
-    static DeveloperBadge* badgeForUser(int);
-    static void showBadgeInfo(const std::string&, int);
-};
+    DeveloperBadge* badgeForUser(int);
+    void showBadgeInfo(std::string_view, int);
+}

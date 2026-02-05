@@ -1,23 +1,19 @@
 {
-    "geode": "4.9.0",
+    "geode": "5.0.0-alpha.1",
     "gd": {
-        "android": "2.2074",
-        "win": "2.2074",
-        "mac": "2.2074",
-        "ios": "2.2074"
+        "android": "2.2081",
+        "win": "2.2081",
+        "mac": "2.2081",
+        "ios": "2.2081"
     },
-    "version": "v1.1.7",
+    "version": "v1.1.8-beta.1",
     "id": "hiimjustin000.developer_badges",
     "name": "Developer Badges",
     "developer": "hiimjasmine00",
     "description": "Badges for every* Geode mod developer.",
     "dependencies": {
         "geode.node-ids": ">=v1.12.0",
-        "hiimjasmine00.optional_settings": ">=v1.0.0",
-        "jouca.badgesapi": {
-            "importance": "recommended",
-            "version": ">=v1.1.0"
-        }
+        "hiimjasmine00.optional_settings": ">=v2.0.0-beta.1"
     },
     "resources": {
         "spritesheets": {

@@ -1,4 +1,7 @@
 # Developer Badges Changelog
+## v1.1.8 (2026-02-05)
+- Ported to Geometry Dash v2.208 / Geode SDK v5.0.0
+
 ## v1.1.7 (2025-10-11)
 - Added compatibility with the mod "Comment Emojis Reloaded" by Prevter
 - Changed comment color settings to use my "Optional Settings" mod

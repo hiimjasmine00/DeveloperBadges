@@ -33,10 +33,13 @@ $on_mod(Loaded) {
             }
         }
     }
+}
 
-    new EventListener(+[](GameEvent*) {
-        web::WebRequest().get("https://badges.hiimjasmine00.com/developer").listen([](web::WebResponse* res) {
-            if (!res->ok()) return;
+$on_game(Loaded) {
+    spawn(
+        web::WebRequest().get("https://badges.hiimjasmine00.com/developer"),
+        [](web::WebResponse res) {
+            if (!res.ok()) return;
 
             for (auto& value : jasmine::web::getArray(res)) {
                 auto id = value.get<int>("id");
@@ -51,8 +54,8 @@ $on_mod(Loaded) {
                 DeveloperBadge badge(id.unwrap(), type.unwrap(), std::move(name).unwrap());
                 DeveloperBadges::developerBadges.emplace(badge.id, std::move(badge));
             }
-        });
-    }, GameEventFilter(GameEventType::Loaded));
+        }
+    );
 }
 
 DeveloperBadge* DeveloperBadges::badgeForUser(int id) {
@@ -82,7 +85,7 @@ constexpr std::array descriptions = {
     "They are part of the main development team and have significant contributions to the <cy>Geode ecosystem</c>"
 };
 
-void DeveloperBadges::showBadgeInfo(const std::string& username, int type) {
+void DeveloperBadges::showBadgeInfo(std::string_view username, int type) {
     FLAlertLayer::create(
         names[type < names.size() ? type : 0],
         fmt::format("<cg>{}</c> {}.", username, descriptions[type < descriptions.size() ? type : 0]),
