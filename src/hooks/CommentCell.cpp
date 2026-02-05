@@ -53,7 +53,7 @@ class $modify(DBCommentCell, CommentCell) {
 
         if (badgeType < 1 || badgeType > colors.size()) return;
 
-        if (auto commentColor = jasmine::setting::getValue<std::optional<cocos2d::ccColor3B>>(colors[badgeType - 1])) {
+        if (auto commentColor = jasmine::setting::getValue<std::optional<ccColor3B>>(colors[badgeType - 1])) {
             auto color = commentColor.value();
 
             if (auto commentTextLabel = static_cast<CCLabelBMFont*>(m_mainLayer->getChildByID("comment-text-label"))) {
