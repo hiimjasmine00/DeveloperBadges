@@ -1,5 +1,5 @@
 # Developer Badges Changelog
-## v1.1.8 (2026-02-06)
+## v1.1.8 (2026-02-08)
 - Ported to Geometry Dash v2.208 / Geode SDK v5.0.0
 
 ## v1.1.7 (2025-10-11)
