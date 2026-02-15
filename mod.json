@@ -1,19 +1,19 @@
 {
-    "geode": "5.0.0-alpha.2",
+    "geode": "5.0.0-beta.1",
     "gd": {
         "android": "2.2081",
         "win": "2.2081",
         "mac": "2.2081",
         "ios": "2.2081"
     },
-    "version": "v1.1.8-beta.1",
+    "version": "v1.1.8",
     "id": "hiimjustin000.developer_badges",
     "name": "Developer Badges",
     "developer": "hiimjasmine00",
     "description": "Badges for every* Geode mod developer.",
     "dependencies": {
         "geode.node-ids": ">=v1.12.0",
-        "hiimjasmine00.optional_settings": ">=v2.0.0-beta.1"
+        "hiimjasmine00.optional_settings": ">=v2.0.0"
     },
     "resources": {
         "spritesheets": {
