@@ -1,4 +1,5 @@
 #include <ccTypes.h>
+#include <map>
 
 struct DeveloperBadge {
     int id;

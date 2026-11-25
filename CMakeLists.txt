@@ -9,7 +9,7 @@ endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(GEODE_DISABLE_PRECOMPILED_HEADERS ON)
 
-project(DeveloperBadges VERSION 1.1.8)
+project(DeveloperBadges VERSION 1.1.9)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
@@ -23,7 +23,7 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-CPMAddPackage("gh:hiimjasmine00/jasmine-tools@1.5.0")
+CPMAddPackage("gh:hiimjasmine00/jasmine-tools@1.5.3")
 target_link_libraries(${PROJECT_NAME} jasmine-tools)
 
 setup_geode_mod(${PROJECT_NAME})

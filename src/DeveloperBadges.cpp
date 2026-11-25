@@ -2,7 +2,8 @@
 #include <Geode/binding/FLAlertLayer.hpp>
 #include <Geode/loader/GameEvent.hpp>
 #include <Geode/loader/Mod.hpp>
-#include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
+#include <Geode/loader/ModEvent.hpp>
+#include <hiimjasmine00.optional_settings/OptionalColor3BSetting.hpp>
 #include <jasmine/setting.hpp>
 #include <jasmine/web.hpp>
 

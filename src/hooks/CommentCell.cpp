@@ -4,7 +4,7 @@
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/TextArea.hpp>
 #include <Geode/modify/CommentCell.hpp>
-#include <hiimjasmine00.optional_settings/include/OptionalColor3BSetting.hpp>
+#include <hiimjasmine00.optional_settings/OptionalColor3BSetting.hpp>
 #include <jasmine/setting.hpp>
 
 using namespace geode::prelude;
