@@ -1,6 +1,7 @@
 # Developer Badges Changelog
-## v1.1.9 (2026-11-24)
+## v1.2.0 (2026-11-26)
 - Ported to Geometry Dash v2.209 / Geode SDK v6.0.0
+- Switched to using the mod "Badgified" by DasshuDev
 
 ## v1.1.8 (2026-02-14)
 - Ported to Geometry Dash v2.208 / Geode SDK v5.0.0

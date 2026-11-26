@@ -6,14 +6,15 @@
         "mac": "2.2091",
         "ios": "2.2091"
     },
-    "version": "v1.1.9",
+    "version": "v1.2.0",
     "id": "hiimjustin000.developer_badges",
     "name": "Developer Badges",
     "developer": "hiimjasmine00",
     "description": "Badges for every* Geode mod developer.",
     "dependencies": {
         "geode.node-ids": ">=v1.12.0",
-        "hiimjasmine00.optional_settings": ">=v3.0.0"
+        "hiimjasmine00.optional_settings": ">=v3.0.0",
+        "dasshu.badgified": ">=v1.0.0"
     },
     "resources": {
         "spritesheets": {
